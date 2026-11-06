@@ -1,32 +1,122 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <!-- Redirecionamento de segurança via Meta Tag (caso o JS esteja desativado no navegador) -->
-    <meta http-equiv="refresh" content="https://meli.la/2aBmEng">
-    <title>Redirecionando...</title>
-
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-
-        fbq('init', '918341774492381');
-        fbq('track', 'PageView');
-
-        // Aguarda 500ms para dar tempo ao Pixel de registrar o evento antes de mudar de página
-        setTimeout(function() {
-            window.location.href = "https://meli.la/2aBmEng";
-        }, 500);
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aprenda a aplicar inteligência artificial na criação de conteúdo, serviços e projetos digitais com o treinamento IA que Gera Renda.">
+<meta name="theme-color" content="#071b3b">
+<title>IA que Gera Renda — Inteligência aplicada às suas ideias</title>
+<style>
+:root{--navy:#071b3b;--blue:#155eef;--blue2:#3987ff;--pale:#eef5ff;--ink:#14233d;--muted:#66758d;--line:#e5ebf4;--white:#fff;--shadow:0 24px 70px rgba(10,38,82,.12);--radius:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.6;background:#fff}a{text-decoration:none;color:inherit}button{font:inherit}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+.announcement{background:var(--navy);color:#d8e7ff;text-align:center;padding:9px 14px;font-size:12px;letter-spacing:.07em;font-weight:700}
+header{height:78px;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(229,235,244,.85)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.04em;color:var(--navy);line-height:1.1}.logo-mark{height:40px;width:40px;border-radius:13px;background:linear-gradient(145deg,#155eef,#55a6ff);display:grid;place-items:center;color:#fff;font-size:21px;box-shadow:0 8px 20px #155eef35}.logo small{display:block;font-size:9px;letter-spacing:.17em;color:#71809a;margin-top:5px}.links{display:flex;gap:27px;color:#53627a;font-size:13px;font-weight:700}.links a:hover{color:var(--blue)}.btn{border:0;border-radius:13px;padding:14px 21px;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:white;font-weight:850;font-size:14px;cursor:pointer;box-shadow:0 10px 25px #155eef30;transition:.2s}.btn:hover{transform:translateY(-2px);background:#064bd1;box-shadow:0 15px 30px #155eef40}.btn.light{background:#fff;color:var(--blue);box-shadow:none}.btn.ghost{background:#fff;color:var(--navy);border:1px solid #d8e3f2;box-shadow:none}.menu{display:none;background:white;border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--navy)}
+.hero{position:relative;overflow:hidden;padding:95px 0 85px;background:radial-gradient(ellipse at 85% 20%,#d6e8ff 0,transparent 30%),linear-gradient(135deg,#f8fbff 0%,#edf5ff 58%,#fff 100%)}.hero:after{content:"";position:absolute;width:500px;height:500px;border:1px solid #3987ff20;border-radius:50%;right:-220px;bottom:-340px;box-shadow:0 0 0 50px #3987ff08,0 0 0 100px #3987ff06}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:65px}.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:30px;background:#e3efff;color:#1554b7;font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.pill i{height:7px;width:7px;border-radius:50%;background:#2677f4;box-shadow:0 0 0 4px #2677f41b}h1{font-size:clamp(42px,5.5vw,69px);line-height:1.02;letter-spacing:-.065em;color:var(--navy);margin:22px 0 20px}h1 em{font-style:normal;color:var(--blue)}.lead{font-size:18px;color:#5c6c84;max-width:600px;margin:0 0 29px}.actions{display:flex;gap:12px;flex-wrap:wrap}.trustline{display:flex;gap:15px;flex-wrap:wrap;margin-top:22px;color:#65758d;font-size:12px;font-weight:650}.trustline span:before{content:"✓";color:#1671e8;font-weight:900;margin-right:7px}
+.visual{min-height:430px;display:grid;place-items:center;position:relative}.dashboard{width:min(100%,450px);border:1px solid #ffffffb8;border-radius:27px;background:linear-gradient(145deg,#092653,#0b5ed4);padding:29px;color:white;box-shadow:0 35px 85px #0a36704a;position:relative;overflow:hidden}.dashboard:before,.dashboard:after{content:"";position:absolute;border:1px solid #ffffff20;border-radius:50%;width:290px;height:290px;right:-120px;top:-155px;box-shadow:0 0 0 32px #ffffff08,0 0 0 70px #ffffff06}.dash-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.dash-label{font-size:10px;letter-spacing:.15em;font-weight:850;color:#c9e0ff}.spark{font-size:23px}.orb{height:94px;width:94px;border-radius:28px;margin:42px 0 22px;display:grid;place-items:center;font-size:48px;background:linear-gradient(145deg,#ffffff2b,#ffffff0c);border:1px solid #ffffff35;box-shadow:inset 0 1px #ffffff45;position:relative;z-index:1}.dashboard h3{font-size:28px;line-height:1.12;letter-spacing:-.04em;margin:0 0 11px;max-width:300px;position:relative;z-index:1}.dashboard p{font-size:13px;color:#d4e7ff;margin:0;max-width:320px;position:relative;z-index:1}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:27px;position:relative;z-index:1}.chips span{font-size:10px;font-weight:750;padding:8px 10px;border:1px solid #ffffff2d;border-radius:8px;background:#ffffff12}.float{position:absolute;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px;padding:12px 15px;font-size:11px;font-weight:800;color:#42516a}.float b{display:block;color:var(--blue);font-size:16px}.float.a{left:-10px;top:34px}.float.b{right:-5px;bottom:30px}
+section{padding:88px 0}.section-title{text-align:center;max-width:740px;margin:0 auto 44px}.eyebrow{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.section-title h2,.split h2,.cta h2{font-size:clamp(31px,4vw,47px);line-height:1.1;letter-spacing:-.055em;color:var(--navy);margin:13px 0}.section-title p{color:var(--muted);margin:0;font-size:16px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid var(--line);border-radius:19px;padding:26px;background:#fff;transition:.2s}.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cfe0fb}.icon{width:46px;height:46px;border-radius:14px;background:var(--pale);color:var(--blue);display:grid;place-items:center;font-size:22px;margin-bottom:18px}.card h3{font-size:17px;color:var(--navy);margin:0 0 8px}.card p{font-size:13px;color:var(--muted);margin:0}
+.soft{background:#f6f9fe}.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center}.feature-panel{border-radius:26px;background:linear-gradient(145deg,#071d40,#1265df);padding:36px;color:white;box-shadow:var(--shadow)}.feature-panel .display{font-size:48px;font-weight:950;line-height:1.02;letter-spacing:-.06em}.feature-panel p{color:#d4e5ff;font-size:14px}.feature-panel ul{padding:0;list-style:none;display:grid;gap:13px;margin:25px 0 0}.feature-panel li{font-size:13px;color:#e6f1ff}.feature-panel li:before{content:"✓";color:#8fc2ff;margin-right:10px;font-weight:900}.split-copy p{color:var(--muted);font-size:15px}.checklist{display:grid;gap:12px;margin-top:22px}.checklist div{font-size:14px;color:#40516b}.checklist b{color:var(--blue);margin-right:9px}
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.module{padding:23px;border:1px solid var(--line);border-radius:17px;background:#fff}.module .n{font-size:10px;letter-spacing:.15em;color:#4b8be8;font-weight:950}.module h3{font-size:16px;color:var(--navy);margin:9px 0 7px}.module p{font-size:13px;color:var(--muted);margin:0}
+.bonus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.bonus{background:#fff;border:1px solid var(--line);border-radius:19px;padding:25px}.bonus .label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:#145ac7;background:#eaf3ff;border-radius:7px;padding:6px 9px}.bonus h3{color:var(--navy);font-size:17px;margin:16px 0 8px}.bonus p{font-size:13px;color:var(--muted);margin:0}
+.offer-section{background:linear-gradient(180deg,#f5f9ff,#fff)}.offer{max-width:850px;margin:auto;background:#fff;border:1px solid #d8e6f8;border-radius:27px;padding:42px;box-shadow:var(--shadow);text-align:center}.offer h2{font-size:clamp(30px,4vw,43px);letter-spacing:-.05em;line-height:1.1;color:var(--navy);margin:14px 0}.offer>p{color:var(--muted);max-width:610px;margin:0 auto}.price-label{margin-top:26px;font-size:11px;letter-spacing:.14em;color:#72819a;font-weight:900}.price{font-size:59px;line-height:1.15;letter-spacing:-.06em;color:var(--navy);font-weight:950;margin:4px 0}.price small{font-size:19px;letter-spacing:0;vertical-align:top}.fine{font-size:11px;color:#7a879b}.buy-options{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0 10px}.buy-options .btn{min-width:230px}.security{font-size:12px;color:#71809a;margin-top:15px}.security span{margin:0 7px;color:#b0bdcf}
+.faq-list{max-width:800px;margin:auto;display:grid;gap:11px}details{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:white}summary{cursor:pointer;font-weight:800;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:21px;color:var(--blue);line-height:1}details[open] summary:after{content:"−"}details p{font-size:13px;color:var(--muted);margin:12px 0 0}
+.cta{background:linear-gradient(120deg,#071b3b,#0d55b9);text-align:center;color:#fff}.cta h2{color:#fff;max-width:740px;margin:14px auto}.cta p{color:#d5e5ff;max-width:620px;margin:0 auto 25px}.cta .btn{background:#fff;color:#1554c4;box-shadow:none}
+footer{padding:34px 0 90px;color:#7a879b;font-size:11px}.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.disclaimer{max-width:850px;margin-top:17px}.sticky-buy{display:none}
+@media(max-width:900px){.links{display:none;position:absolute;top:78px;left:0;right:0;background:#fff;padding:22px;box-shadow:0 14px 25px #0b2b5415;flex-direction:column}.links.open{display:flex}.menu{display:block}.nav>.btn{display:none}.hero-grid,.split{grid-template-columns:1fr;gap:35px}.visual{min-height:390px}.cards,.modules,.bonus-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.wrap{width:calc(100% - 32px)}.hero{padding:65px 0 55px}.hero-grid{gap:20px}h1{font-size:43px}.lead{font-size:16px}.actions .btn{width:100%}.visual{min-height:340px}.dashboard{padding:23px}.orb{margin:28px 0 16px}.float.a{left:0;top:8px}.float.b{right:0;bottom:4px}.cards,.modules,.bonus-grid{grid-template-columns:1fr}section{padding:66px 0}.offer{padding:30px 19px}.buy-options{display:grid}.buy-options .btn{width:100%}.sticky-buy{display:block;position:fixed;z-index:60;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);padding:10px 16px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}.sticky-buy .btn{width:100%;padding:12px}footer{padding-bottom:100px}}
+</style>
 </head>
 <body>
-    <p>Caso não seja redirecionado automaticamente, <a href="https://meli.la/2aBmEng">clique aqui</a>.</p>
-</body>
-</html>
+<div class="announcement">UM NOVO JEITO DE APRENDER • INTELIGÊNCIA ARTIFICIAL APLICADA</div>
+<header><div class="wrap nav">
+<a class="logo" href="#inicio"><span class="logo-mark">✦</span><span>IA QUE GERA RENDA<small>IDEIAS • TECNOLOGIA • AÇÃO</small></span></a>
+<nav class="links" id="links"><a href="#metodo">O método</a><a href="#conteudo">O que você aprende</a><a href="#bonus">Bônus</a><a href="#duvidas">Dúvidas</a></nav>
+<a class="btn" href="#oferta">Conhecer o treinamento <span>→</span></a><button class="menu" id="menu" aria-label="Abrir menu">☰</button>
+</div></header>
+<main>
+<section class="hero" id="inicio"><div class="wrap hero-grid">
+<div><span class="pill"><i></i> Inteligência artificial na prática</span>
+<h1>Suas ideias podem ir <em>mais longe</em> com IA.</h1>
+<p class="lead">Aprenda a usar ferramentas de inteligência artificial para criar conteúdo, desenvolver serviços e explorar oportunidades no mercado digital — mesmo começando do zero.</p>
+<div class="actions"><a class="btn" href="#oferta">Quero conhecer o curso <span>→</span></a><a class="btn ghost" href="#conteudo">Explorar o conteúdo</a></div>
+<div class="trustline"><span>Para iniciantes</span><span>Aprenda no seu ritmo</span><span>Conteúdo prático</span></div></div>
+<div class="visual"><div class="float a"><b>IA + criatividade</b>Mais possibilidades para suas ideias</div><div class="dashboard"><div class="dash-top"><span class="dash-label">SEU PRÓXIMO CAPÍTULO</span><span class="spark">✧</span></div><div class="orb">✦</div><h3>Transforme conhecimento em projetos digitais.</h3><p>Aprenda ferramentas, desenvolva habilidades e coloque suas ideias em movimento com inteligência artificial.</p><div class="chips"><span>Criação</span><span>Produtividade</span><span>Estratégia</span></div></div><div class="float b"><b>Do aprendizado à ação</b>Passo a passo, no seu ritmo</div></div>
+</div></section>
+
+<section><div class="wrap"><div class="section-title"><span class="eyebrow">O mundo está evoluindo</span><h2>A IA não precisa ser complicada para fazer parte dos seus projetos.</h2><p>Com orientação e prática, você pode usar a tecnologia para apoiar tarefas, desenvolver soluções e explorar novos caminhos profissionais.</p></div>
+<div class="cards">
+<article class="card"><div class="icon">✎</div><h3>Crie com mais agilidade</h3><p>Use IA como apoio para ideias, textos, roteiros, imagens e materiais digitais.</p></article>
+<article class="card"><div class="icon">⌘</div><h3>Otimize seu processo</h3><p>Organize tarefas, estruture etapas e descubra formas de trabalhar com mais eficiência.</p></article>
+<article class="card"><div class="icon">↗</div><h3>Explore oportunidades</h3><p>Conheça aplicações em serviços, conteúdo e produtos digitais que você pode avaliar.</p></article>
+</div></div></section>
+
+<section class="soft" id="metodo"><div class="wrap split">
+<div class="feature-panel"><div class="display">Tecnologia<br>com direção.</div><p>Um treinamento para transformar curiosidade em conhecimento aplicável.</p><ul><li>Explicações diretas para iniciantes</li><li>Ferramentas e exemplos práticos</li><li>Prompts para adaptar ao seu objetivo</li><li>Ideias para testar e desenvolver</li></ul></div>
+<div class="split-copy"><span class="eyebrow">Conheça o treinamento</span><h2>Não é sobre dinheiro fácil. É sobre aprender uma habilidade que pode abrir possibilidades.</h2><p>O <strong>IA que Gera Renda</strong> é um treinamento educacional que apresenta formas de aplicar inteligência artificial em atividades digitais. Você vai aprender a conversar melhor com ferramentas de IA, criar materiais, estruturar ideias e avaliar oportunidades que combinem com suas habilidades.</p><p>Não é necessário ser especialista em tecnologia. O ponto de partida é aprender os fundamentos, praticar e evoluir com consistência.</p><div class="checklist"><div><b>✓</b> Fundamentos e ferramentas de IA</div><div><b>✓</b> Criação de prompts eficientes</div><div><b>✓</b> Conteúdo, serviços e produtos digitais</div><div><b>✓</b> Organização de um plano de ação</div></div></div>
+</div></section>
+
+<section id="conteudo"><div class="wrap"><div class="section-title"><span class="eyebrow">Sua jornada de aprendizado</span><h2>Conteúdo organizado para você sair da teoria e praticar.</h2><p>Uma trilha introdutória para conhecer ferramentas e experimentar aplicações reais.</p></div>
+<div class="modules">
+<article class="module"><span class="n">MÓDULO 01</span><h3>Começando com inteligência artificial</h3><p>Conceitos, possibilidades, limites e escolha das ferramentas certas.</p></article>
+<article class="module"><span class="n">MÓDULO 02</span><h3>Prompts que entregam melhores respostas</h3><p>Como dar instruções claras, adicionar contexto e refinar resultados.</p></article>
+<article class="module"><span class="n">MÓDULO 03</span><h3>Conteúdo e criatividade com IA</h3><p>Textos, ideias, roteiros, imagens e materiais para projetos digitais.</p></article>
+<article class="module"><span class="n">MÓDULO 04</span><h3>Serviços digitais com apoio da IA</h3><p>Exemplos de serviços, organização da entrega e atenção à qualidade.</p></article>
+<article class="module"><span class="n">MÓDULO 05</span><h3>Produtos e projetos online</h3><p>Ideias de produtos digitais, validação de propostas e planejamento.</p></article>
+<article class="module"><span class="n">MÓDULO 06</span><h3>Plano de ação e evolução</h3><p>Defina um objetivo, teste suas ideias e acompanhe o que funciona.</p></article>
+</div></div></section>
+
+<section class="soft" id="bonus"><div class="wrap"><div class="section-title"><span class="eyebrow">Materiais complementares</span><h2>Mais recursos para apoiar sua prática.</h2><p>Consulte os materiais enquanto aprende e adapte cada recurso à sua realidade.</p></div>
+<div class="bonus-grid"><article class="bonus"><span class="label">Bônus 01</span><h3>Biblioteca de prompts</h3><p>Comandos editáveis para criação, planejamento, pesquisa e produtividade.</p></article><article class="bonus"><span class="label">Bônus 02</span><h3>Ideias de projetos digitais</h3><p>Inspirações para pesquisar, validar e escolher um projeto alinhado às suas habilidades.</p></article><article class="bonus"><span class="label">Bônus 03</span><h3>Plano de ação de 7 dias</h3><p>Uma sequência de atividades para organizar seus estudos e testar ferramentas.</p></article></div></div></section>
+
+<section class="offer-section" id="oferta"><div class="wrap"><div class="offer"><span class="pill"><i></i> Acesso ao treinamento</span><h2>Comece hoje a desenvolver suas habilidades com IA.</h2><p>Tenha acesso ao treinamento IA que Gera Renda e aos materiais complementares apresentados nesta página.</p>
+<div class="price-label">INVESTIMENTO SUGERIDO</div><div class="price"><small>R$</small> 47,00</div><div class="fine">Valor ilustrativo. Confirme o preço e as condições no checkout.</div>
+<div class="buy-options"><a class="btn" href="#" id="ownBuy">Comprar neste site <span>→</span></a><a class="btn ghost" href="#" id="kiwifyBuy">Comprar pela Kiwify ↗</a></div>
+<div class="security">Checkout seguro <span>•</span> Pagamento processado pelo provedor escolhido <span>•</span> Acesso conforme a oferta</div>
+<p class="fine" style="margin-top:16px">Os dois botões serão conectados aos seus respectivos checkouts quando você fornecer os links e configurar o meio de pagamento próprio.</p>
+</div></div></section>
+
+<section class="soft" id="duvidas"><div class="wrap"><div class="section-title"><span class="eyebrow">Perguntas frequentes</span><h2>O que você precisa saber antes de começar.</h2></div><div class="faq-list">
+<details><summary>Preciso ter experiência com IA?</summary><p>Não. O conteúdo foi pensado para apresentar os fundamentos e orientar quem está começando.</p></details>
+<details><summary>Preciso saber programar?</summary><p>Não é necessário saber programação para acompanhar os conceitos e exemplos introdutórios.</p></details>
+<details><summary>O curso garante renda ou resultados financeiros?</summary><p>Não. O treinamento é educacional e não garante ganhos. Resultados dependem de fatores como prática, execução, demanda, experiência e condições de mercado.</p></details>
+<details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, as instruções de acesso serão enviadas conforme o processo configurado na plataforma de venda.</p></details>
+<details><summary>Posso estudar pelo celular?</summary><p>Sim, o site é responsivo. A compatibilidade dos materiais e da área de membros depende da plataforma usada para entregar o curso.</p></details>
+</div></div></section>
+
+<section class="cta"><div class="wrap"><span class="eyebrow" style="color:#a9ceff">Seu próximo passo</span><h2>Aprenda a usar a inteligência artificial com intenção e estratégia.</h2><p>Conheça o treinamento, desenvolva novas habilidades e comece a colocar suas ideias em prática.</p><a class="btn" href="#oferta">Ver opções de compra ↓</a></div></section>
+</main>
+<footer><div class="wrap"><div class="foot"><a class="logo" href="#inicio"><span class="logo-mark">✦</span><span>IA QUE GERA RENDA<small>IDEIAS • TECNOLOGIA • AÇÃO</small></span></a><span>© <span id="year"></span> IA que Gera Renda. Todos os direitos reservados.</span><span>Treinamento educacional digital.</span></div><p class="disclaimer">Aviso: este produto tem finalidade educacional e não promete nem garante ganhos financeiros. Os resultados variam de acordo com conhecimento, dedicação, execução, oferta, demanda e condições de mercado. Ferramentas e marcas de terceiros pertencem aos respectivos proprietários.</p></div></footer>
+<div class="sticky-buy"><a class="btn" href="#oferta">Ver opções de compra • R$ 47,00</a></div>
+<script>
+const menu = document.getElementById('menu'), links = document.getElementById('links');
+menu.addEventListener('click', () => {
+    links.classList.toggle('open');
+    menu.setAttribute('aria-expanded', links.classList.contains('open'));
+});
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const KIWIFY_CHECKOUT_URL = 'COLE_AQUI_SEU_LINK_KIWIFY';
+const OWN_CHECKOUT_URL = 'COLE_AQUI_SEU_LINK_DE_CHECKOUT_PROPRIO';
+
+function configureCheckout(id, url, label) {
+    const button = document.getElementById(id);
+    button.href = url.startsWith('https://') ? url : '#';
+    button.addEventListener('click', event => {
+        if (!url.startsWith('https://')) {
+            event.preventDefault();
+            alert('O checkout ' + label + ' ainda não foi configurado. Insira o link seguro no código.');
+        }
+    });
+}
+configureCheckout('kiwifyBuy', KIWIFY_CHECKOUT_URL, 'da Kiwify');
+configureCheckout('ownBuy', OWN_CHECKOUT_URL, 'próprio');
+</script>
+</body></html>'''
+
+path = Path("/mnt/data/site_ia_que_gera_renda_profissional.html")
+path.write_text(html, encoding="utf-8")
+print(f"Site criado com sucesso: {path.name}")
+print(f"Tamanho: {path.stat().st_size:,} bytes")
